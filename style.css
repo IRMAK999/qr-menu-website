@@ -1,0 +1,630 @@
+
+
+
+body{
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    
+}
+
+.navbar{
+    display: flex; 
+     justify-content: space-between;
+      align-items: center;
+     background-color: #34150f;
+     padding: 10px 20px;
+     position: sticky;
+     top: 0;
+     z-index: 100;
+
+}
+.logo{
+    color: #DCD7C9;;
+    font-size: 24px;
+    text-decoration: none;
+
+}
+
+.nav-links{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+     display: none; /*liste ogelerını yatay yap */
+      flex-direction: column;/* menu acılınca alt alta gelsın die */
+
+    position: absolute; /* Menüyü "havada asılı" bir katman yap */
+    top: 100%;          /* Navbar'ın bittiği yerden (%100 altından) başlat */
+    right: 0;            /* Ekranın en soluna yasla */
+    background-color:#34150f;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 0 0 5px 5px; /* Alt köşeleri hafif yuvarla */
+}
+
+
+
+.nav-links a {
+    color: #DCD7C9;
+    text-decoration: none;
+    font-size: 16px;
+    display: block; 
+    padding: 15px;
+    text-align: left;
+    
+
+}
+
+.nav-links a:hover{
+    color: #DCD7C9;
+    background-color: #A27B5B;
+    
+}
+
+.navbar-toggler{
+    display: block;
+    width: 30px;
+    height: 25px;
+    position: relative;
+    cursor: pointer;
+}
+
+
+/* Gizli kutu İŞARETLENDİĞİNDE (tıklandığında), menüyü GÖSTER */
+#navbar-toggle:checked ~ .nav-links {
+    display: flex; 
+}
+
+/* HTML'deki o gizli onay kutusunu görünmez yap */
+#navbar-toggle {
+    display: none;
+}
+
+@media(min-width:844px) {
+    .navbar-toggler{
+        display: none;
+
+    }
+   .nav-links{  /* gizli olan yazı linklerınnı goster ve yanyana dız */
+        display: flex;
+        flex-direction: row;
+        position: static;
+        width: auto;
+
+    }
+}
+
+
+.menu-inside{
+    padding: 20px;
+}
+
+
+.card-img-container {
+    width: 100%;          /* Kapsayıcı, kartın tüm genişliğini kaplasın */
+    height: 200px;        /* KAPSAYICIYA SABİT BİR YÜKSEKLİK VER (Kareye yakın) */
+    
+    overflow: hidden;     /* Eğer resim bu kutudan taşarsa, dışarı taşan kısmı GİZLE */
+    
+    margin-top: 20px;     /* Başlık ile bu kutu arasına boşluk */
+    margin-bottom: 0;  /* Resim kutusu ile alttaki içerik arasına boşluk */
+    border-radius: 8px;   /* Köşeleri yumuşat */ 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+
+.card-img {
+    width: 100%;  /* Genişliğini kapsayıcısına göre ayarla */
+    height: 100%; /* Yüksekliğini de kapsayıcısına göre ayarla */
+    
+    /* ÖNEMLİ: En-boy oranını bozmadan kutuyu doldur ve taşan kısmı kes */
+    object-fit: cover; 
+    
+    /* Hafif bir yumuşatma, resim boyut değişirken güzel dursun */
+    transition: all 0.3s ease; 
+    display: block;
+
+}
+
+.card h2{
+    text-align: center;
+}
+
+
+
+.menu-detay-sayfasi{
+    display: none;
+    padding: 20px;
+
+}
+
+
+
+/* Geri dön butonu */
+.geri-buton {
+    display: inline-block;
+    margin-top: 15px;
+    margin-bottom: 25px;
+    padding: 10px 20px;
+    background-color: #34150f; 
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    border: none; /* Buton olduğu için çerçeveyi kaldır */
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease ,
+     box-shadow 0.2s ease , 
+     background-color 0.2 s ease;
+}
+
+.geri-buton:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+    background-color: #5a3831;
+}
+
+.urun-grid{
+    display: flex;
+     flex-wrap: wrap; /*ekrana sığmazsa alt satıra at*/
+} 
+
+.urun-karti{
+    flex-basis: 100%;
+    margin-bottom: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    overflow: hidden;
+    text-align: left;
+    box-sizing: border-box;
+
+
+}
+
+.urun-resmi{
+    width: 100%;
+    height: 180px;
+    object-fit: cover;  /* Bu, resmi bozmadan (ezmeden) kutuya sığdırır, taşanı keser */
+     
+}
+
+.urun-adi{
+    font-size: 20px;
+    color: #444;
+    margin-top: 15px;
+    margin-left: 15px;
+    margin-bottom: 5px;
+
+}
+
+.urun-fiyat{
+    font-size: 18px;
+    color:#34150f;
+    font-weight: bold;
+    display: block;
+    margin-left: 15px;
+    margin-bottom: 15px;
+    
+}
+
+.card{
+    background-color: #ffffff;
+    margin-bottom: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover{
+    transform: scale(1.05);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.card:hover .card-img{
+    transform: scale(1.1);
+}
+
+
+/* === KADEMELİ GEÇİŞ ANİMASYONU (YAVAŞLATILDI) === */
+
+
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 2. Başlık (H1) - YAVAŞLATILDI */
+.menu-detay-sayfasi h1 {
+
+  animation: fadeInUp 0.7s ease forwards; 
+  
+  opacity: 0;
+}
+
+/* 3. ÜRÜN KARTLARININ TEMEL DURUMU - YAVAŞLATILDI */
+.menu-detay-sayfasi .urun-karti {
+  opacity: 0;
+  
+
+  animation: fadeInUp 0.7s ease forwards;
+}
+
+
+
+.urun-grid .urun-karti:nth-child(1) {
+  animation-delay: 0.15s; /* 1. kart 0.15 saniye sonra başlasın */
+}
+.urun-grid .urun-karti:nth-child(2) {
+  animation-delay: 0.30s; /* 2. kart 0.30 saniye sonra... */
+}
+.urun-grid .urun-karti:nth-child(3) {
+  animation-delay: 0.45s;
+}
+.urun-grid .urun-karti:nth-child(4) {
+  animation-delay: 0.60s;
+}
+.urun-grid .urun-karti:nth-child(5) {
+  animation-delay: 0.75s;
+}
+.urun-grid .urun-karti:nth-child(6) {
+  animation-delay: 0.90s;
+}
+.urun-grid .urun-karti:nth-child(7) {
+  animation-delay: 1.05s;
+}
+.urun-grid .urun-karti:nth-child(8) {
+  animation-delay: 1.20s;
+}
+.urun-grid .urun-karti:nth-child(9) {
+  animation-delay: 1.35s;
+}
+.urun-grid .urun-karti:nth-child(10) {
+  animation-delay: 1.50s;
+}
+
+
+.line{
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 3px;
+    background-color: #DCD7C9;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+.line1{
+    top: 0;
+}
+.line2{
+    top: 50%;
+    transform: translateY(-50%);
+}
+.line3{
+    bottom: 0;
+
+}
+
+
+#navbar-toggle:checked ~ .navbar-toggler .line2 {
+  opacity: 0;
+}
+
+/* Checkbox'a tıklandığında, üstteki çizgiyi (line1) DÖNDÜR */
+#navbar-toggle:checked ~ .navbar-toggler .line1 {
+  /* Ortaya indir ve 45 derece döndür */
+  top: 50%;
+  transform: translateY(-50%) rotate(45deg);
+}
+
+/* Checkbox'a tıklandığında, alttaki çizgiyi (line3) DÖNDÜR */
+#navbar-toggle:checked ~ .navbar-toggler .line3 {
+  /* Ortaya kaldır ve -45 derece döndür */
+  bottom: 50%;
+  transform: translateY(50%) rotate(-45deg);
+}
+
+#yukari-cik-buton{
+    display: none;
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    z-index: 99;
+    background-color: #34150f;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    padding: 8px 15px;
+    font-size: 25px;
+font-weight: bold;
+cursor: pointer;
+opacity: 0;
+transition: opacity 0.3s ease;
+
+}
+
+#yukari-cik-buton.goster{
+    display: block;
+    opacity: 1;
+}
+
+#yukari-cik-buton:hover{
+    background-color: #5a3831;
+}
+
+
+.karsilama-gorseli{
+    height: 100vh;
+    width: 100%;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-top: 80px;
+    padding-left: 20px;
+    padding-right: 20px;
+    box-sizing: border-box;
+    align-items: center;
+    color: #000000;
+    padding: center;
+    text-align: center;
+    position: relative;
+
+}
+
+.hero-baslik{
+    font-weight: 900;
+    margin: 0;
+   
+}
+
+.hero-altbaslik{
+    font-size: 1.2rem;
+    font-weight: 300;
+    margin-top: 10px;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.hero-bardak{
+ position: absolute;  
+ top: 45%;
+ left: 50%;
+ transform: translate(-50%, -50%);
+ width: 100%;
+ max-width: 350px;
+ height: auto;
+}
+
+
+.hero-buttons{
+    position: absolute;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    width: 65%;
+    max-width: 300px;
+
+}
+
+.hero-buttons button{
+    width: 100%;
+    max-width: 350px;
+    padding: 16px;
+    font-size: 1rem;
+    font-weight: 700;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    gap: 15px;
+   
+    
+}
+
+.hero-buttons button:last-child{
+    margin-bottom: 0;
+}
+
+.hero-buttons .btn-primary{
+    background-color: #5a3831;
+    color: #fff;
+
+}
+
+.hero-buttons .btn-secondary{
+    background-color: transparent;
+    color: #34150f;
+    border: 2px solid #34150f;
+}
+
+
+.hero-baslik,
+.hero-altbaslik{
+    opacity: 0;
+animation: fadeInUp 0.7s ease forwards;
+}
+
+.hero-bardak{
+    opacity: 0;
+  animation: fadeInUp-bardak 0.7s ease forwards;
+}
+
+.hero-buttons{
+    opacity: 0;
+  animation: fadeInUp-buttons 0.7s ease forwards;
+}
+
+
+
+.hero-baslik{
+    animation-delay: 0.2s;
+}
+
+.hero-altbaslik{
+    animation-delay: 0.4s;
+}
+.hero-bardak{
+    animation-delay: 0.6s;
+}
+
+.hero-buttons{
+    animation-delay: 0.8s;
+}
+
+@keyframes fadeInUp-bardak{
+    from{
+        opacity: 0;
+        /* Hem DİKEYDE (translateY) hem YATAYDA (translate -50%) başla */
+    transform: translate(-50%, -50%) translateY(20px);
+    }
+    to {
+        opacity: 1;
+        /* Animasyon bitince normal ortalanmış haline dön */
+    transform: translate(-50%, -50%) translateY(0);
+    }
+}
+
+@keyframes fadeInUp-buttons{
+    from{
+        opacity: 0;
+        /* Hem DİKEYDE (translateY) hem YATAYDA (translateX) başla */
+    transform: translateX(-50%) translateY(20px);
+    }
+
+     to{
+    opacity: 1;
+    /* Animasyon bitince normal ortalanmış haline dön */
+    transform: translateX(-50%) translateY(0);
+}
+
+}
+
+
+.site-footer{
+    background-color: #34150f;
+    color: #DCD7C9;
+    padding: 20px 0;
+    text-align: center;
+    font-size: 0.9rem;
+    margin-top: 30px;
+
+}
+
+.site-footer p{
+    margin: 0;
+}
+
+ul {
+  list-style: none;
+}
+
+.example-2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-right: 80px;
+  box-sizing: border-box;
+}
+.example-2 .icon-content {
+  margin: 0 10px;
+  position: relative;
+}
+.example-2 .icon-content .tooltip {
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 5px;
+  opacity: 0;
+  visibility: hidden;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+.example-2 .icon-content:hover .tooltip {
+  opacity: 1;
+  visibility: visible;
+  top: -50px;
+}
+.example-2 .icon-content a {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  color: #4d4d4d;
+  background-color: #fff;
+  transition: all 0.3s ease-in-out;
+}
+.example-2 .icon-content a:hover {
+  box-shadow: 3px 2px 45px 0px rgb(0 0 0 / 12%);
+}
+.example-2 .icon-content a svg {
+  position: relative;
+  z-index: 1;
+  width: 30px;
+  height: 30px;
+}
+.example-2 .icon-content a:hover {
+  color: white;
+}
+.example-2 .icon-content a .filled {
+  position: absolute;
+  top: auto;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 0;
+  background-color: #000;
+  transition: all 0.3s ease-in-out;
+}
+.example-2 .icon-content a:hover .filled {
+  height: 100%;
+}
+
+.example-2 .icon-content a[data-social="linkedin"] .filled,
+.example-2 .icon-content a[data-social="linkedin"] ~ .tooltip {
+  background-color: #0274b3;
+}
+
+.example-2 .icon-content a[data-social="github"] .filled,
+.example-2 .icon-content a[data-social="github"] ~ .tooltip {
+  background-color: #24262a;
+}
+.example-2 .icon-content a[data-social="instagram"] .filled,
+.example-2 .icon-content a[data-social="instagram"] ~ .tooltip {
+  background: linear-gradient(
+    45deg,
+    #405de6,
+    #5b51db,
+    #b33ab4,
+    #c135b4,
+    #e1306c,
+    #fd1f1f
+  );
+}
+.example-2 .icon-content a[data-social="youtube"] .filled,
+.example-2 .icon-content a[data-social="youtube"] ~ .tooltip {
+  background-color: #ff0000;
+}
